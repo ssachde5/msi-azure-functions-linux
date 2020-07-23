@@ -44,6 +44,13 @@ def connect_msi_db():
         for i in accesstoken:
             exptoken += bytes({i})
             exptoken += bytes(1)
+        """
+        struct.pack()
+        https://docs.python.org/2/library/struct.html
+        This module performs conversions between Python values and C structs represented as Python strings. 
+        This can be used in handling binary data stored in files or from network connections, among other sources. 
+        It uses Format Strings as compact descriptions of the layout of the C structs and the intended conversion to/from Python values.
+        """
         tokenstruct = struct.pack("=i", len(exptoken)) + exptoken
         conn_string = 'driver=%s; server=%s; database=%s;' % (driver, server, database)
         logging.info(f'connection string : {conn_string}')
